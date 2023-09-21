@@ -1,14 +1,11 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.json.simple.parser.ParseException;
 
 public class testGson {
     public static void main(String[] args) {
@@ -31,7 +28,7 @@ public class testGson {
             JsonElement text = arrObj[place].get("text");
             JsonArray options = arrObj[place].get("options").getAsJsonArray();
 
-            System.out.println(text);
+            System.out.println(text.toString()); // \n doesn't work
 
             if (options.isEmpty()) {
                 break;
