@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class testGson {
@@ -23,10 +22,10 @@ public class testGson {
         // story starts
         while (true) {
             //JsonElement id = arrObj[place].get("id");
-            JsonElement text = arrObj[place].get("text");
+            String text = arrObj[place].get("text").getAsString();
             JsonArray options = arrObj[place].get("options").getAsJsonArray();
 
-            System.out.println(text.getAsString()); // \n doesn't work
+            System.out.println(text);
 
             if (options.isEmpty()) {
                 break;
@@ -34,9 +33,9 @@ public class testGson {
 
             for (int i = 0; i < 2; i++) {
                 JsonObject option = options.get(i).getAsJsonObject();
-                JsonElement optionText = option.get("msg");
+                String optionText = option.get("msg").getAsString();
 
-                System.out.println(i+1 + ". " + optionText.getAsString());
+                System.out.println(i+1 + ". " + optionText);
             }
 
             //scanner listen
@@ -44,8 +43,7 @@ public class testGson {
             ans = question.nextInt();
 
             JsonObject option = options.get(ans-1).getAsJsonObject();
-            JsonElement optionNextId = option.get("nextId");
-            place = optionNextId.getAsInt();
+            place = option.get("nextId").getAsInt();
         }
     }
 }
